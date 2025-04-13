@@ -1,0 +1,498 @@
+openapi: 3.0.0
+info:
+  title: DAOGenius Governance Analytics API
+  description: API for analyzing DAO governance participation, voting patterns, and providing governance insights
+  version: 1.0.0
+  contact:
+    name: DAOGenius
+servers:
+  - url: https://api.daogenius.io
+    description: Production server
+  - url: http://localhost:3000
+    description: Local development server
+
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        message:
+          type: string
+    GovernanceSummary:
+      type: object
+      properties:
+        totalProposals:
+          type: integer
+          example: 12
+        activeProposals:
+          type: integer
+          example: 3
+        completedProposals:
+          type: integer
+          example: 9
+        overallParticipation:
+          type: number
+          format: float
+          example: 68.5
+        participationTrend:
+          type: string
+          enum: [Increasing, Decreasing, Stable]
+          example: Increasing
+    ParticipationMetrics:
+      type: object
+      properties:
+        byMonth:
+          type: object
+          additionalProperties:
+            type: number
+          example:
+            "2025-04": 62.4
+            "2025-03": 58.7
+            "2025-02": 51.2
+        byProposalType:
+          type: object
+          additionalProperties:
+            type: number
+          example:
+            Treasury: 72.5
+            Protocol: 68.2
+            Membership: 58.9
+    VotingAnalytics:
+      type: object
+      properties:
+        distributionBySize:
+          type: object
+          properties:
+            whales:
+              type: number
+              example: 42.3
+            medium:
+              type: number
+              example: 38.7
+            small:
+              type: number
+              example: 19.0
+        outcomes:
+          type: object
+          properties:
+            passed:
+              type: integer
+              example: 7
+            rejected:
+              type: integer
+              example: 2
+            averageApproval:
+              type: number
+              example: 71.3
+    AnalyticsResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          enum: [success, error]
+        data:
+          type: object
+          properties:
+            summary:
+              $ref: '#/components/schemas/GovernanceSummary'
+            participation:
+              $ref: '#/components/schemas/ParticipationMetrics'
+            voting:
+              $ref: '#/components/schemas/VotingAnalytics'
+            insights:
+              type: array
+              items:
+                type: string
+              example:
+                - "Participation increases 24% when proposals are introduced on Tuesdays"
+                - "Treasury proposals see 15% higher engagement than other types"
+            recommendations:
+              type: array
+              items:
+                type: string
+              example:
+                - "Consider implementing two-stage voting for major decisions"
+                - "Experiment with quadratic voting to increase small holder participation"
+
+paths:
+  /health:
+    get:
+      summary: Health check endpoint
+      description: Returns the health status of the API
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    enum: [ok]
+                  service:
+                    type: string
+                  version:
+                    type: string
+                    
+  /api/auth/token:
+    post:
+      summary: Get API access token
+      description: Provides JWT token for API authentication
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                apiKey:
+                  type: string
+                  description: API Key for authentication
+              required:
+                - apiKey
+      responses:
+        '200':
+          description: Successfully authenticated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token:
+                    type: string
+                    description: JWT token to use for API authentication
+                  expiresIn:
+                    type: string
+                    description: Token expiration time
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  
+  /api/analytics:
+    get:
+      summary: Get governance analytics overview
+      description: Retrieves comprehensive analytics about a DAO's governance
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: daoAddress
+          in: query
+          description: Ethereum address of the DAO
+          required: true
+          schema:
+            type: string
+        - name: timeFrame
+          in: query
+          description: Time period for analytics
+          required: false
+          schema:
+            type: string
+            enum: [week, month, quarter, year]
+            default: month
+        - name: platforms
+          in: query
+          description: Comma-separated list of data sources
+          required: false
+          schema:
+            type: string
+            default: all
+      responses:
+        '200':
+          description: Analytics data retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AnalyticsResponse'
+        '400':
+          description: Bad request - Invalid parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Unauthorized - Invalid or missing token
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: DAO not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+                
+  /api/analytics/proposals:
+    get:
+      summary: Get detailed proposal analytics
+      description: Retrieves detailed analytics about a DAO's proposals
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: daoAddress
+          in: query
+          description: Ethereum address of the DAO
+          required: true
+          schema:
+            type: string
+        - name: status
+          in: query
+          description: Filter by proposal status
+          required: false
+          schema:
+            type: string
+            enum: [active, completed, all]
+            default: all
+        - name: timeFrame
+          in: query
+          description: Time period for proposals
+          required: false
+          schema:
+            type: string
+            enum: [week, month, quarter, year]
+            default: month
+      responses:
+        '200':
+          description: Proposal analytics retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    enum: [success]
+                  data:
+                    type: object
+                    properties:
+                      proposals:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                            title:
+                              type: string
+                            status:
+                              type: string
+                            participationRate:
+                              type: number
+                            startDate:
+                              type: string
+                              format: date-time
+                            endDate:
+                              type: string
+                              format: date-time
+                            votes:
+                              type: object
+                              properties:
+                                for:
+                                  type: number
+                                against:
+                                  type: number
+                                abstain:
+                                  type: number
+        '400':
+          description: Bad request - Invalid parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Unauthorized - Invalid or missing token
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  
+  /api/analytics/voters:
+    get:
+      summary: Get voter analytics
+      description: Analyzes voting patterns and behavior of DAO members
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: daoAddress
+          in: query
+          description: Ethereum address of the DAO
+          required: true
+          schema:
+            type: string
+        - name: timeFrame
+          in: query
+          description: Time period for analysis
+          required: false
+          schema:
+            type: string
+            enum: [week, month, quarter, year]
+            default: month
+      responses:
+        '200':
+          description: Voter analytics retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    enum: [success]
+                  data:
+                    type: object
+                    properties:
+                      activeVoters:
+                        type: integer
+                      newVoters:
+                        type: integer
+                      regularVoters:
+                        type: integer
+                      votingPower:
+                        type: object
+                        properties:
+                          distribution:
+                            type: object
+                            properties:
+                              top10Percent:
+                                type: number
+                              middle40Percent:
+                                type: number
+                              bottom50Percent:
+                                type: number
+                          giniCoefficient:
+                            type: number
+                            description: Measure of voting power inequality
+                      behaviors:
+                        type: object
+                        properties:
+                          averageVotesPerProposal:
+                            type: number
+                          timingDistribution:
+                            type: object
+                            properties:
+                              firstDay:
+                                type: number
+                              middlePeriod:
+                                type: number
+                              lastDay:
+                                type: number
+        '400':
+          description: Bad request - Invalid parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Unauthorized - Invalid or missing token
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  
+  /api/analytics/compare:
+    get:
+      summary: Compare DAO against similar DAOs
+      description: Compares governance metrics against similar DAOs
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: daoAddress
+          in: query
+          description: Ethereum address of the DAO
+          required: true
+          schema:
+            type: string
+        - name: category
+          in: query
+          description: Category of DAOs to compare against
+          required: false
+          schema:
+            type: string
+            enum: [defi, social, metaverse, protocol, investment]
+        - name: metrics
+          in: query
+          description: Comma-separated list of metrics to compare
+          required: false
+          schema:
+            type: string
+            default: participation,proposal_frequency,vote_distribution
+      responses:
+        '200':
+          description: Comparison data retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    enum: [success]
+                  data:
+                    type: object
+                    properties:
+                      comparison:
+                        type: object
+                        properties:
+                          participation:
+                            type: object
+                            properties:
+                              yourDAO:
+                                type: number
+                              categoryAverage:
+                                type: number
+                              percentile:
+                                type: number
+                          proposal_frequency:
+                            type: object
+                            properties:
+                              yourDAO:
+                                type: number
+                              categoryAverage:
+                                type: number
+                              percentile:
+                                type: number
+                          vote_distribution:
+                            type: object
+                            properties:
+                              yourDAO:
+                                type: number
+                              categoryAverage:
+                                type: number
+                              percentile:
+                                type: number
+                      similar_daos:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            name:
+                              type: string
+                            address:
+                              type: string
+                            similarity_score:
+                              type: number
+                            key_metrics:
+                              type: object
+        '400':
+          description: Bad request - Invalid parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Unauthorized - Invalid or missing token
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error' 
