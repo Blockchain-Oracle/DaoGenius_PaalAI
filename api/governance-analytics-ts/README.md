@@ -17,13 +17,17 @@ A TypeScript-based RESTful API providing comprehensive governance analytics for 
 - Express.js
 - JWT for authentication
 - Swagger for API documentation
+- Docker for containerization
 
 ## Prerequisites
 
 - Node.js (v16 or later)
 - npm or yarn
+- Docker and Docker Compose (optional, for containerized deployment)
 
 ## Installation
+
+### Standard Installation
 
 1. Clone the repository:
 ```
@@ -42,7 +46,25 @@ cp .env.example .env
 ```
 Edit the `.env` file with your configuration.
 
+### Docker Installation
+
+We provide Docker configuration for easy deployment:
+
+1. Clone the repository and navigate to the project folder
+2. Copy the example environment file and edit it:
+```
+cp .env.example .env
+```
+3. Build and run with Docker:
+```
+./docker-build-run.sh
+```
+
+For more details about Docker setup, see [DOCKER.md](DOCKER.md).
+
 ## Development
+
+### Local Development
 
 Start the development server:
 ```
@@ -50,6 +72,13 @@ npm run dev
 ```
 
 This will start the server with hot reloading enabled.
+
+### Docker Development
+
+For development with Docker and hot reloading:
+```
+./docker-dev.sh
+```
 
 ## Build
 
@@ -60,9 +89,18 @@ npm run build
 
 ## Production
 
+### Standard Deployment
+
 Start the production server:
 ```
 npm start
+```
+
+### Docker Deployment
+
+Run in production mode with Docker:
+```
+docker compose up -d
 ```
 
 ## API Documentation
@@ -84,7 +122,7 @@ http://localhost:3000/api-docs
 - `GET /api/analytics/compare` - Compare DAO against similar DAOs
 
 ### Health Check
-- `GET /health` - API health check
+- `GET /api/health` - API health check
 
 ## Integration with DAOGenius
 

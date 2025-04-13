@@ -1,0 +1,24 @@
+FROM node:18-alpine
+
+# Set working directory
+WORKDIR /app
+
+# Install global packages
+RUN npm install -g pnpm ts-node-dev
+
+# Copy package files
+COPY package*.json ./
+COPY pnpm-lock.yaml ./
+
+# Install all dependencies (including dev dependencies)
+RUN pnpm install
+
+# Expose the port the app runs on
+ENV PORT=3000
+EXPOSE 3000
+
+# Set NODE_ENV to development
+ENV NODE_ENV=development
+
+# Command to run the application in development mode with hot reloading
+CMD ["npx", "ts-node-dev", "--respawn", "src/index.ts"] 

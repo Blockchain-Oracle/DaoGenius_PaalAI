@@ -15,7 +15,7 @@ import authRoutes from './routes/auth.routes';
 dotenv.config();
 
 // Initialize express app
-const app = express();
+const app: express.Application = express();
 const PORT = process.env.PORT || 3000;
 
 // Middleware
@@ -37,7 +37,7 @@ app.use('/api/analytics', analyticsRoutes);
 app.use('/api/auth', authRoutes);
 
 // Health check endpoint
-app.get('/health', (req, res) => {
+app.get('/api/health', (req, res) => {
   res.status(200).json({ 
     status: 'ok', 
     service: 'daogenius-governance-analytics',
