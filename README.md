@@ -2,6 +2,16 @@
 
 A comprehensive solution for DAO governance analytics, powered by PAAL AI.
 
+<div align="center">
+  <img src="frontend/ReadmeImages/DAOGenius by PAAL AI.jpeg" alt="DAOGenius Logo" width="600px" />
+  <br><br>
+  <img src="frontend/ReadmeImages/readmeImage.png" alt="DAOGenius Preview" width="800px" />
+</div>
+
+## Live Demo
+
+Check out the live demo: [DAOGenius on Vercel](https://dao-genius-paal-ai.vercel.app/)
+
 ## Project Structure
 
 This repository contains:
@@ -32,6 +42,7 @@ Located in `/frontend`
 - Simulated chat interface with the DAOGenius AI assistant
 - Overview of key features and capabilities
 - Direct integration with the PAAL AI platform
+- Fully responsive design for mobile and desktop devices
 
 ### Running the Frontend
 
@@ -42,6 +53,22 @@ npm start
 ```
 
 For detailed frontend documentation, see [Frontend README](frontend/README.md).
+
+## Deployment
+
+The frontend is deployed using Vercel at [https://dao-genius-paal-ai.vercel.app/](https://dao-genius-paal-ai.vercel.app/).
+
+To deploy your own version:
+
+```bash
+# Build the production version
+cd frontend
+npm run build
+
+# Deploy to your preferred hosting service
+# For Vercel:
+vercel
+```
 
 ## Integration with PAAL AI
 
