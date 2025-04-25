@@ -28,7 +28,7 @@ cd frontend
 
 # Install dependencies
 echo -e "${BLUE}Installing dependencies...${NC}"
-npm install
+pnpm install
 
 # Build the production bundle
 echo -e "\n${GREEN}Creating optimized production build...${NC}"
