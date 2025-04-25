@@ -1,58 +1,52 @@
-# DAOGenius: Decentralized AI Governance Bot
+# DAOGenius - DAO Governance Analytics
 
-A PAAL AI agent that facilitates decentralized governance processes for DAOs by automating proposals, voting reminders, and consensus verification, ensuring a more efficient and participatory decision-making process.
+A comprehensive solution for DAO governance analytics, powered by PAAL AI.
 
-## Features
+## Project Structure
 
-- **Proposal Management**: Automates the creation, tracking, and notification of governance proposals
-- **Voting Reminders**: Sends personalized reminders to stakeholders when important votes are pending
-- **Consensus Verification**: Validates voting outcomes and ensures transparent governance processes
-- **Governance Analytics**: Provides insights on participation rates and voting patterns
-- **Multi-platform Integration**: Works across Discord, Telegram, and other community platforms
+This repository contains:
 
-## PAAL AI Configuration
+- **Backend API**: A TypeScript-based RESTful API providing governance analytics for DAOs
+- **Frontend Showcase**: A React-based demonstration frontend for the DAOGenius bot
 
-### Basic Details
-- **Name**: DAOGenius
-- **Description**: Your AI-powered governance assistant for DAOs
-- **Category**: Web3/DAO Tools
-- **LLM**: GPT-4o-mini
-- **Image Model**: DALL-E 3
+## Backend: Governance Analytics API
 
-### Capabilities
-- Create and track governance proposals
-- Send voting reminders to stakeholders
-- Verify consensus and voting outcomes
-- Generate governance analytics and reports
-- Integrate with multiple DAO platforms and tools
+Located in `/api/governance-analytics-ts`
 
-### Custom Knowledge
-- DAO governance best practices
-- Common voting mechanisms (quadratic, token-weighted, etc.)
-- Proposal templates and frameworks
-- Major DAO platforms and their governance structures
+### Features
 
-### Personality
-DAOGenius is helpful, neutral, and process-oriented. It maintains a professional tone while being accessible to both governance experts and newcomers. It values transparency, fairness, and inclusive decision-making. It's designed to facilitate governance without influencing outcomes.
+- **Governance Overview**: Get comprehensive analytics about a DAO's governance
+- **Proposal Analytics**: Detailed insights about governance proposals
+- **Voter Analytics**: Analyze voter behavior and participation patterns
+- **DAO Comparison**: Compare governance metrics against similar DAOs
+- **Secure Authentication**: JWT-based authentication for API access
 
-### Conversation Starters
-- "How do I create a new governance proposal?"
-- "When does voting close on the current proposals?"
-- "What's the participation rate for our recent votes?"
-- "Can you help me understand the voting process?"
-- "What are the active proposals I need to vote on?"
+For detailed backend documentation, see [Backend README](api/governance-analytics-ts/README.md).
 
-## Implementation Plan
+## Frontend: Showcase UI
 
-1. Design the agent's knowledge base and personality
-2. Configure the PAAL AI interface and capabilities
-3. Build integrations with common DAO platforms
-4. Develop custom prompts for governance scenarios
-5. Test with real governance processes
-6. Deploy and gather feedback
+Located in `/frontend`
 
-## Resources
+### Features
 
-- [PAAL AI Documentation](https://docs.paal.ai)
-- [DAO Governance Standards](https://example.com/dao-standards)
-- [Integration APIs](https://example.com/apis) 
+- Simulated chat interface with the DAOGenius AI assistant
+- Overview of key features and capabilities
+- Direct integration with the PAAL AI platform
+
+### Running the Frontend
+
+```bash
+cd frontend
+npm install
+npm start
+```
+
+For detailed frontend documentation, see [Frontend README](frontend/README.md).
+
+## Integration with PAAL AI
+
+This project integrates with the PAAL AI platform, which hosts the actual DAOGenius bot. The frontend showcase provides a demonstration of the bot's capabilities and redirects users to the PAAL AI platform for full interaction.
+
+## License
+
+This project is licensed under the MIT License. 
