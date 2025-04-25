@@ -31,6 +31,12 @@ Located in `/api/governance-analytics-ts`
 - **DAO Comparison**: Compare governance metrics against similar DAOs
 - **Secure Authentication**: JWT-based authentication for API access
 
+### API Documentation
+
+API documentation is available at:
+- Production: [https://daogenius-paalai.onrender.com/api-docs](https://daogenius-paalai.onrender.com/api-docs)
+- Local development: http://localhost:3000/api-docs
+
 For detailed backend documentation, see [Backend README](api/governance-analytics-ts/README.md).
 
 ## Frontend: Showcase UI
