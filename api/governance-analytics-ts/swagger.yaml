@@ -6,7 +6,7 @@ info:
   contact:
     name: DAOGenius
 servers:
-  - url: https://api.daogenius.io
+  - url: daogenius-paalai.onrender.com
     description: Production server
   - url: http://localhost:3000
     description: Local development server

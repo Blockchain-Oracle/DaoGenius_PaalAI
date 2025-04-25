@@ -31,7 +31,7 @@ A TypeScript-based RESTful API providing comprehensive governance analytics for 
 
 1. Clone the repository:
 ```
-git clone https://github.com/your-username/daogenius-governance-analytics.git
+git clone https://github.com/Blockchain-Oracle/DaoGenius_PaalAI.git
 cd daogenius-governance-analytics
 ```
 
