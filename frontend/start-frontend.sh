@@ -31,3 +31,4 @@ echo -e "\n${GREEN}Starting development server...${NC}"
 echo -e "${YELLOW}The application will be available at: ${GREEN}http://localhost:3000${NC}\n"
 
 npm start 
+rnd_RWLdC2uD6Pt2u5srvnQerHmPCpEh

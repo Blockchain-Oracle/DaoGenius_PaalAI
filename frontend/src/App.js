@@ -15,10 +15,14 @@ const AppContainer = styled.div`
 
 const MainContent = styled.main`
   flex: 1;
-  padding: 2rem;
+  padding: 2rem 1rem;
   max-width: 1200px;
   margin: 0 auto;
   width: 100%;
+  
+  @media (max-width: 768px) {
+    padding: 1rem 0.75rem;
+  }
 `;
 
 function App() {

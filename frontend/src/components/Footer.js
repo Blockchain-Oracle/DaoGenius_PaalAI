@@ -9,6 +9,10 @@ const FooterContainer = styled.footer`
   color: #ccc;
   position: relative;
   overflow: hidden;
+  
+  @media (max-width: 768px) {
+    padding: 3rem 1.5rem 2rem;
+  }
 `;
 
 const FooterContent = styled.div`
@@ -25,6 +29,10 @@ const LogoContainer = styled.div`
   display: flex;
   align-items: center;
   margin-bottom: 3rem;
+  
+  @media (max-width: 768px) {
+    margin-bottom: 2rem;
+  }
 `;
 
 const Logo = styled.div`
@@ -56,6 +64,16 @@ const Logo = styled.div`
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
+  
+  @media (max-width: 768px) {
+    font-size: 1.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    
+    .x {
+      margin: 0 0.5rem;
+    }
+  }
 `;
 
 const FooterColumns = styled.div`
@@ -68,6 +86,7 @@ const FooterColumns = styled.div`
   @media (max-width: 768px) {
     flex-direction: column;
     gap: 2rem;
+    margin-bottom: 2rem;
   }
 `;
 
@@ -77,6 +96,7 @@ const Column = styled.div`
   
   @media (max-width: 768px) {
     text-align: center;
+    min-width: 100%;
   }
 `;
 
@@ -85,6 +105,10 @@ const ColumnTitle = styled.h3`
   margin-bottom: 1.5rem;
   font-weight: 600;
   color: white;
+  
+  @media (max-width: 768px) {
+    margin-bottom: 1rem;
+  }
 `;
 
 const ColumnLink = styled.a`
@@ -105,6 +129,10 @@ const TechStack = styled.div`
   flex-wrap: wrap;
   gap: 0.8rem;
   margin-top: 0.5rem;
+  
+  @media (max-width: 768px) {
+    justify-content: center;
+  }
 `;
 
 const TechItem = styled.span`
@@ -123,6 +151,11 @@ const Copyright = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 0.5rem;
+  text-align: center;
+  
+  @media (max-width: 768px) {
+    font-size: 0.8rem;
+  }
 `;
 
 const SocialLinks = styled.div`
@@ -149,6 +182,12 @@ const SocialLink = styled.a`
     color: white;
     transform: translateY(-3px);
     box-shadow: 0 4px 10px rgba(130, 101, 255, 0.4);
+  }
+  
+  @media (max-width: 768px) {
+    width: 45px;
+    height: 45px;
+    font-size: 1.3rem;
   }
 `;
 

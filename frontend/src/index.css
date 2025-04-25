@@ -12,6 +12,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-color: #121212;
   color: #e0e0e0;
+  overflow-x: hidden;
 }
 
 code {
@@ -31,6 +32,29 @@ a:hover {
 button {
   cursor: pointer;
   font-family: inherit;
+}
+
+img, video, canvas, svg {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Responsive typography */
+html {
+  font-size: 16px;
+}
+
+@media (max-width: 768px) {
+  html {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  html {
+    font-size: 14px;
+  }
 }
 
 /* Selection color */
@@ -107,5 +131,82 @@ textarea:focus {
   
   h2 {
     font-size: 1.6rem;
+  }
+  
+  h3 {
+    font-size: 1.3rem;
+  }
+  
+  p {
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.8rem;
+  }
+  
+  h2 {
+    font-size: 1.5rem;
+  }
+  
+  h3 {
+    font-size: 1.2rem;
+  }
+}
+
+/* Responsive containers */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 1rem;
+  }
+}
+
+/* Fix for iframe responsive issues */
+iframe {
+  max-width: 100%;
+  border: 0;
+}
+
+/* Prevent text overflow */
+.text-truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Responsive grid system */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 2rem;
+}
+
+@media (max-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(6, 1fr);
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
   }
 } 

@@ -6,11 +6,19 @@ const Container = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
+  
+  @media (max-width: 768px) {
+    margin: 0.5rem 0 2rem;
+  }
 `;
 
 const HeadingContainer = styled.div`
   text-align: center;
   margin-bottom: 2.5rem;
+  
+  @media (max-width: 768px) {
+    margin-bottom: 1.5rem;
+  }
 `;
 
 const Heading = styled.h1`
@@ -20,6 +28,11 @@ const Heading = styled.h1`
   background: linear-gradient(135deg, #5a32a3 0%, #8265ff 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  
+  @media (max-width: 768px) {
+    font-size: 1.8rem;
+    margin-bottom: 0.75rem;
+  }
 `;
 
 const Subheading = styled.p`
@@ -27,6 +40,11 @@ const Subheading = styled.p`
   max-width: 800px;
   margin: 0 auto;
   color: #aaa;
+  
+  @media (max-width: 768px) {
+    font-size: 1rem;
+    padding: 0 0.5rem;
+  }
 `;
 
 const MainLayout = styled.div`
@@ -54,6 +72,14 @@ const IframeContainer = styled.div`
   @media (min-width: 1024px) {
     flex: 2;
   }
+  
+  @media (max-width: 768px) {
+    height: 450px;
+  }
+  
+  @media (max-width: 480px) {
+    height: 400px;
+  }
 `;
 
 const Iframe = styled.iframe`
@@ -71,6 +97,10 @@ const FeaturesSidebar = styled.div`
     margin-top: 0;
     margin-left: 2rem;
   }
+  
+  @media (max-width: 768px) {
+    padding: 0;
+  }
 `;
 
 const FeatureCard = styled.div`
@@ -87,12 +117,21 @@ const FeatureCard = styled.div`
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
     border-color: #444;
   }
+  
+  @media (max-width: 768px) {
+    padding: 1.25rem;
+    margin-bottom: 1rem;
+  }
 `;
 
 const FeatureHeader = styled.div`
   display: flex;
   align-items: center;
   margin-bottom: 1rem;
+  
+  @media (max-width: 480px) {
+    margin-bottom: 0.75rem;
+  }
 `;
 
 const FeatureIcon = styled.div`
@@ -106,6 +145,13 @@ const FeatureIcon = styled.div`
   justify-content: center;
   font-size: 1.2rem;
   margin-right: 1rem;
+  
+  @media (max-width: 480px) {
+    width: 36px;
+    height: 36px;
+    font-size: 1rem;
+    margin-right: 0.75rem;
+  }
 `;
 
 const FeatureTitle = styled.h3`
@@ -113,16 +159,31 @@ const FeatureTitle = styled.h3`
   font-weight: 600;
   color: #e0e0e0;
   margin: 0;
+  
+  @media (max-width: 480px) {
+    font-size: 1.1rem;
+  }
 `;
 
 const FeatureDescription = styled.p`
   color: #aaa;
   line-height: 1.6;
   margin: 0;
+  
+  @media (max-width: 480px) {
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
 `;
 
 const ExampleQueries = styled.div`
   margin-top: 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  
+  @media (max-width: 480px) {
+    margin-top: 1rem;
+  }
 `;
 
 const QueryButton = styled.button`
@@ -139,6 +200,13 @@ const QueryButton = styled.button`
   
   &:hover {
     background: #3a3a3a;
+  }
+  
+  @media (max-width: 480px) {
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
+    margin-right: 0.4rem;
+    margin-bottom: 0.4rem;
   }
 `;
 

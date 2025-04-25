@@ -9,6 +9,11 @@ const CommunityContainer = styled.section`
   border-bottom: 1px solid rgba(130, 101, 255, 0.3);
   position: relative;
   overflow: hidden;
+  
+  @media (max-width: 768px) {
+    margin: 3rem 0;
+    padding: 3rem 1rem;
+  }
 `;
 
 const ContentWrapper = styled.div`
@@ -29,6 +34,11 @@ const SectionTitle = styled.h2`
   background: linear-gradient(135deg, #5a32a3 0%, #8265ff 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  
+  @media (max-width: 768px) {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+  }
 `;
 
 const Subtitle = styled.p`
@@ -37,6 +47,12 @@ const Subtitle = styled.p`
   font-size: 1.1rem;
   margin-bottom: 3rem;
   max-width: 700px;
+  
+  @media (max-width: 768px) {
+    font-size: 1rem;
+    margin-bottom: 2rem;
+    padding: 0 0.5rem;
+  }
 `;
 
 const ContactSections = styled.div`
@@ -44,6 +60,10 @@ const ContactSections = styled.div`
   flex-direction: column;
   gap: 4rem;
   width: 100%;
+  
+  @media (max-width: 768px) {
+    gap: 3rem;
+  }
 `;
 
 const SectionHeader = styled.h3`
@@ -52,6 +72,11 @@ const SectionHeader = styled.h3`
   margin-bottom: 2rem;
   font-weight: 600;
   color: #e0e0e0;
+  
+  @media (max-width: 768px) {
+    font-size: 1.4rem;
+    margin-bottom: 1.5rem;
+  }
 `;
 
 const LinksContainer = styled.div`
@@ -61,6 +86,16 @@ const LinksContainer = styled.div`
   gap: 2rem;
   margin-bottom: 1rem;
   width: 100%;
+  
+  @media (max-width: 768px) {
+    gap: 1.5rem;
+  }
+  
+  @media (max-width: 480px) {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+  }
 `;
 
 const LinkCard = styled.a`
@@ -81,6 +116,17 @@ const LinkCard = styled.a`
     box-shadow: 0 8px 30px rgba(130, 101, 255, 0.3);
     border-color: rgba(130, 101, 255, 0.5);
   }
+  
+  @media (max-width: 768px) {
+    padding: 1.5rem;
+    width: 180px;
+  }
+  
+  @media (max-width: 480px) {
+    width: 90%;
+    max-width: 280px;
+    padding: 1.5rem 1rem;
+  }
 `;
 
 const LinkIcon = styled.div`
@@ -99,6 +145,13 @@ const LinkIcon = styled.div`
   box-shadow: ${props => props.developer ? 
     '0 4px 15px rgba(130, 101, 255, 0.4)' : 
     '0 4px 15px rgba(45, 108, 223, 0.4)'};
+    
+  @media (max-width: 768px) {
+    width: 60px;
+    height: 60px;
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+  }
 `;
 
 const LinkTitle = styled.h3`
@@ -106,6 +159,10 @@ const LinkTitle = styled.h3`
   color: white;
   margin-bottom: 0.5rem;
   font-weight: 600;
+  
+  @media (max-width: 768px) {
+    font-size: 1.1rem;
+  }
 `;
 
 const LinkDescription = styled.p`
@@ -113,6 +170,10 @@ const LinkDescription = styled.p`
   color: #aaa;
   text-align: center;
   line-height: 1.5;
+  
+  @media (max-width: 768px) {
+    font-size: 0.85rem;
+  }
 `;
 
 const ProjectStats = styled.div`
@@ -121,6 +182,17 @@ const ProjectStats = styled.div`
   justify-content: center;
   gap: 2rem;
   margin-top: 3rem;
+  
+  @media (max-width: 768px) {
+    gap: 1.5rem 1rem;
+    margin-top: 2rem;
+  }
+  
+  @media (max-width: 480px) {
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+  }
 `;
 
 const StatItem = styled.div`
@@ -128,6 +200,10 @@ const StatItem = styled.div`
   flex-direction: column;
   align-items: center;
   padding: 0 1.5rem;
+  
+  @media (max-width: 768px) {
+    padding: 0 1rem;
+  }
 `;
 
 const StatValue = styled.div`
@@ -137,11 +213,19 @@ const StatValue = styled.div`
   background: linear-gradient(135deg, #5a32a3 0%, #8265ff 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  
+  @media (max-width: 768px) {
+    font-size: 2rem;
+  }
 `;
 
 const StatLabel = styled.div`
   font-size: 1rem;
   color: #aaa;
+  
+  @media (max-width: 768px) {
+    font-size: 0.9rem;
+  }
 `;
 
 const Divider = styled.div`
@@ -150,6 +234,11 @@ const Divider = styled.div`
   height: 2px;
   background: linear-gradient(90deg, rgba(130, 101, 255, 0), rgba(130, 101, 255, 0.5), rgba(130, 101, 255, 0));
   margin: 2rem 0 3rem;
+  
+  @media (max-width: 768px) {
+    max-width: 150px;
+    margin: 1.5rem 0 2rem;
+  }
 `;
 
 const BackgroundCircle = styled.div`
@@ -168,6 +257,21 @@ const BackgroundCircle = styled.div`
     bottom: -300px;
     left: -300px;
     background: radial-gradient(circle, rgba(77, 148, 255, 0.05) 0%, rgba(45, 108, 223, 0) 70%);
+  }
+  
+  @media (max-width: 768px) {
+    width: 400px;
+    height: 400px;
+    
+    &.top-right {
+      top: -200px;
+      right: -200px;
+    }
+    
+    &.bottom-left {
+      bottom: -200px;
+      left: -200px;
+    }
   }
 `;
 
