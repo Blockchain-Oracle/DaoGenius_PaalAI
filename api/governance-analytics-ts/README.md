@@ -110,6 +110,12 @@ API documentation is available at:
 http://localhost:3000/api-docs
 ```
 
+When running locally, or:
+```
+https://daogenius-paalai.onrender.com/api-docs
+```
+for the production deployment.
+
 ## API Endpoints
 
 ### Authentication
@@ -124,13 +130,33 @@ http://localhost:3000/api-docs
 ### Health Check
 - `GET /api/health` - API health check
 
+## Production Deployment
+
+The API is deployed and accessible at:
+```
+https://daogenius-paalai.onrender.com
+```
+
+### Example Usage with cURL
+
+```bash
+# Get authentication token
+TOKEN=$(curl -s -X POST https://daogenius-paalai.onrender.com/api/auth/token \
+  -H "Content-Type: application/json" \
+  -d '{"apiKey": "daogenius_demo_key"}' | grep -o '"token":"[^"]*' | cut -d'"' -f4)
+
+# Use token to request analytics
+curl -X GET "https://daogenius-paalai.onrender.com/api/analytics?daoAddress=0x1a9C8182C09F50C8318d769245beA52c32BE35BC&timeFrame=month&platforms=all" \
+  -H "Authorization: Bearer $TOKEN"
+```
+
 ## Integration with DAOGenius
 
 This API can be integrated with the DAOGenius bot as a custom API tool:
 
 1. **Tool Name**: GovernanceAnalytics
 2. **Description**: Analyzes governance participation rates and voting patterns
-3. **Endpoint**: https://api.daogenius.io/api/analytics
+3. **Endpoint**: https://daogenius-paalai.onrender.com/api/analytics
 4. **Method**: GET
 5. **Headers**:
    - **Key**: Content-Type
